@@ -17,10 +17,18 @@ void comb(int N, int K)
 {
     //
     ofstream outputStream;
-    // IMP- CHRONO FILE NAME SCHEME
-    outputStream.open("/Users/avitullo/Documents/nCk-(n=16,k=11).txt", ios::out | ios::app);
-    if (!outputStream)   // Test for error.
-    {
+    string file_location = "/Users/avitullo/Documents/PrimeNet/Labels/";
+    string filename = "nCk_n(";
+    string log_file = "/Users/avitullo/Documents/PrimeNet/Labels/input_log.txt";
+    filename.append(to_string(N));
+    filename.append(")");
+    filename.append(",k(");
+    filename.append(to_string(K));
+    filename.append(").txt");
+    file_location.append(filename);
+    //
+    outputStream.open(file_location);
+    if (!outputStream) {  // Test for error.
         std::cerr << "Error opening output file:\n";
         exit(1);
     }
@@ -31,7 +39,7 @@ void comb(int N, int K)
     do {
         for (int i = 0; i < N; ++i) // [0..N-1] integers
         {
-            if (i==0) outputStream << "{";
+            
             //
             if (bitmask[i]) {
                 outputStream << i;
@@ -44,16 +52,31 @@ void comb(int N, int K)
             }
             
         }
-        outputStream << "}" << std::endl;
+        outputStream << std::endl;
     } while (std::prev_permutation(bitmask.begin(), bitmask.end()));
+    //
+    outputStream.close();
+    //
+    outputStream.open(log_file, ios::out | ios::app);
+    if (!outputStream) {  // Test for error.
+        std::cerr << "Error opening output file:\n";
+        exit(1);
+    }
+    outputStream << filename << endl;
+    outputStream.close();
 }
 
 int main(int argc, const char * argv[]) {
     // IMP- MAIN VARIABLE CHECKING/ HANDLING
     //
-    int n = 16, k = 11;
-    //
-    comb(n, k);
+    int MAX = 16;
+    
+
+        for (int k=1; k<=MAX; k++) {
+            //
+            comb(MAX, k);
+        }
+    
     
     return 0;
 }
