@@ -1,10 +1,10 @@
-//
+//  ***********************************************************************
 //  main.cpp
 //  nCk-PrimeNet
 //
 //  Created by Alan Vitullo on 4/1/18.
 //  Copyright © 2018 Alan Vitullo. All rights reserved.
-//
+//  ***********************************************************************
 
 #include <string>
 #include <iostream>
